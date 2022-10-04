@@ -1,0 +1,181 @@
+body {
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+/* http://color-hex.com/color/70213b */
+
+/* div where CAT resides */
+#divCat {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0px 20px 0px;
+    background: radial-gradient(circle at center, white 35%, rgb(80, 220, 200), #694929);
+}
+
+/* CAT */
+#imgCat {
+    width: 300px;
+}
+
+/* class in which the info reside */
+.infoContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* div where the items are located */
+#hiddenCat {
+    position: relative;
+    display: flex;
+}
+
+/* class for the items where the cat may be hiden */
+.hideouts {
+    position: absolute;
+    border: 2px solid red;
+    height: 20px;
+    width: 20px;
+}
+
+#divInfo {
+    position: fixed;
+    visibility: hidden;
+    width: 40%;
+    height: auto;
+    transform: translateY(50%);
+    text-align: center;
+}
+
+/* div where the next 3 divs reside */
+#boxCat {
+    display: flex;
+    justify-content: space-between;
+    border: 5px solid #694929;
+    background-color: #694929;
+}
+
+    /* div where the number of cats reside */
+    #divNumCats {
+        border-right: 3px solid #694929;
+        justify-content: center;
+        width: 33%;
+        flex-wrap: wrap;
+        background-color: white;
+    }
+
+    /* div where the powerups reside */
+    #powerCats {
+        border-left: 3px solid #694929;
+        border-right: 3px solid #694929;
+        width: 33%;
+        background-color: white;
+        display: flex;
+    }
+
+    /* div where the upgrades reside */
+    #divUpgradeCat {
+        border-left: 3px solid #694929;
+        display: flex;
+        justify-content: center;
+        width: 33%;
+        flex-wrap: wrap;
+        background-color: white;
+    }
+
+/* div where the powers reside */
+#powerBox {
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* model for the powers */
+.powerModel {
+    margin: 5px;
+    height: 83px;
+    width: 60px;
+    border: 1px solid black;
+}
+
+/* class for the models of the upgrades */
+.upgradeModel {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* class for the div that show the qty and cost of the upgrades */
+.upgradeModelInfo {
+    display: flex;
+    flex-wrap: wrap;
+    background-image: linear-gradient(to bottom left, rgba(255, 255, 255), rgb(170, 170, 170));
+}
+
+/* class for the div that owns the title of the upgrade */
+.upgradeModelTitle {
+    border: 0.5px solid rgb(116, 115, 115);
+    background-image: linear-gradient(to top right, rgb(110, 90, 45), rgb(250, 250, 250));
+}
+
+.upgradeModelTitle h1 {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.upgradeModel h1 {
+    padding-left: 10px;
+}
+
+.upgradeModel div {
+    width: 100%;
+    border: 0.5px solid rgb(116, 115, 115);
+    text-align: right;
+}
+
+.upgradeModel p {
+    text-align: center;
+    display: inline-block;
+    padding-right: 15px;
+}
+
+#divNumCats div {
+    align-content: center;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* div where the h1 with the total number of cats reside */
+#divTotalCats {
+    height: 156px;
+    background-image: linear-gradient(to right, #694929, rgb(80, 220, 200), rgb(250, 250, 250));
+}
+
+/* div where the h2 with the total cps reside */
+#divTotalCps {
+    height: 156px;
+    border-top: 2px solid rgb(116, 115, 115);
+    border-bottom: 2px solid rgb(116, 115, 115);
+    background-image: linear-gradient(to right, #694929, rgb(80, 220, 200), rgb(250, 250, 250));
+}
+
+#divTotalCats, #divTotalCps {
+    width: 100%;
+    font-size: 0.75em;
+    padding: 15px 0px 15px 0px;
+    justify-content: center;
+}
+
+#divTotalCats h1, #divTotalCps h2 {
+    text-align: center;
+    width: 100%;
+}
+
+.powerupCost {
+    text-align: center;
+    margin-top: 65%;
+}

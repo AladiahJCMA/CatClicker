@@ -6,6 +6,9 @@ let clickMultiplier=1;
 let numberCats=0;
 let catsPerSecond=0.0;
 let costMultiplier= 1.15;
+let hCatChanceO=0.00;
+let hCatChance=0.00;
+let hCatChanceI=0.002;
 let upgrades = [
     {
         name: "Headpats",
@@ -33,28 +36,29 @@ let upgrades = [
 
 let powerUps = [
     {
-        name: "Unknown",
-        desc: "Eureka",
+
+        name: "Newbie caresses",
+        desc: "You're starting to learn what your cat likes.<br/>Headpats cps x2",
         puId: "pu1",
-        pic: "media/cursor.png",
-        cost: 300,
-        type: "click",
-        modifier: 2
-    },
-    {
-        name: "Unknown2",
-        desc: "Yupii",
-        puId: "pu2",
-        pic: "media/ejemplo2.jpg",
+        pic: "media/hand.png",
         cost: 150,
         type: "upgrade",
         upgrade: upgrades[0],
         modifier: 2
-    }, {
-        name: "Unknown3",
-        desc: "Yupii",
+    },
+    {
+        name: "Feline knowledge",
+        desc: "Your clicks now create double the cats!<br/>Clicks cps x2",
         puId: "pu2",
-        pic: "media/ejemplo2.jpg",
+        pic: "media/cursor.png",
+        cost: 300,
+        type: "click",
+        modifier: 2
+    }, {
+        name: "Cheap hair brush",
+        desc: "It's not very good, but your cat seems to like it...<br/>Hair stroke cps x2",
+        puId: "pu3",
+        pic: "media/hairBrush.png",
         cost: 1500,
         type: "upgrade",
         upgrade: upgrades[1],
@@ -69,7 +73,6 @@ updateCats();
 cpsCats();
 fillUpgrades();
 fillPowerups();
-loadHideouts();
 
 function clickCat() {
     numberCats += clickMultiplier;
@@ -82,6 +85,13 @@ function updateCats(){
 
 function cpsCats() {
     numberCats+=catsPerSecond;
+    if (Math.random()<=hCatChance) {
+        loadHideouts();
+        hCatChance=hCatChanceO;
+    } else {
+        hCatChance+=hCatChanceI;
+        console.log(hCatChance);
+    }
     setTimeout(cpsCats, 1000);
 }
 
@@ -240,8 +250,8 @@ function loadHideouts() {
     let hideout1=document.createElement("img");
     let hideout2=document.createElement("img");
 
-    hideout1.setAttribute("src", Math.floor(Math.random)*(hideouts.length+1));
-    hideout2.setAttribute("src", Math.floor(Math.random)*(hideouts.length+1));
+    hideout1.setAttribute("src", hideouts[Math.floor(Math.random()*(hideouts.length))]);
+    hideout2.setAttribute("src", hideouts[Math.floor(Math.random()*(hideouts.length))]);
 
     hideout1.setAttribute("class", "hideouts");
     hideout2.setAttribute("class", "hideouts");
@@ -259,19 +269,27 @@ function loadHideouts() {
     let hideoutH=document.getElementById("divCat").offsetHeight;
     let hideoutW=document.getElementById("divCat").offsetWidth;
 
-    hideout1.style.left=Math.floor(Math.random()*(Number(hideoutW)-20))+"px";
-    hideout1.style.top=Math.floor(Math.random()*(Number(hideoutH)-20))+"px";
-    hideout2.style.left=Math.floor(Math.random()*(Number(hideoutW)-20))+"px";
-    hideout2.style.left=Math.floor(Math.random()*(Number(hideoutH)-20))+"px";
-    // Falta la posición aleatoria y appendChild a hiddenCat
+    hideout1.style.left=Math.floor(Math.random()*(Number(hideoutW)-80))+"px";
+    hideout1.style.top=Math.floor(Math.random()*(Number(hideoutH)-80))+"px";
+    hideout2.style.left=Math.floor(Math.random()*(Number(hideoutW)-80))+"px";
+    hideout2.style.top=Math.floor(Math.random()*(Number(hideoutH)-80))+"px";
+
+    setTimeout(hideCat, 5000);
 }
 
 function findcat(bool) {
-    let hideArray=document.getElementsByClassName("hideouts");
-    hideArray[0].style.display="none";
-    hideArray[1].style.display="none";
-
+    hideCat();
     if (bool) {
         activatePrize();
     }
+}
+
+function hideCat() {
+        while (hiddenCat.firstChild) {
+        hiddenCat.removeChild(hiddenCat.firstChild);
+    }
+}
+
+function activatePrize() {
+    numberCats+=(catsPerSecond*20);
 }

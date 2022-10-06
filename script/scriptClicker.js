@@ -31,6 +31,16 @@ let upgrades = [
         paragraphId: "up2",
         paragraphNum: "numUp2",
         desc: "They love having their hair stroken though"
+    }, {
+        name: "Treats",
+        qty: 0,
+        cps: 5.0,
+        oCost: 450.0,
+        cost: 450.0,
+        modifier: 1,
+        paragraphId: "up3",
+        paragraphNum: "numUp3",
+        desc: "Looks like the cat has behaved well! Time for a snack :3"
     }
 ]
 
@@ -66,7 +76,7 @@ let powerUps = [
     }
 ]
 
-let hideouts= ["media/blanketOriginal.jpg", "media/boxOriginal.jpg", "media/paperbagOriginal.jpg"]
+let hideouts= ["media/blanket.png", "media/box.png", "media/paperbag.png"]
 
 updateCps();
 updateCats();

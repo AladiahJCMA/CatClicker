@@ -1,7 +1,7 @@
 let cats=document.getElementById("cats"), cps=document.getElementById("cps");
 let itemName=document.getElementById("itemName"), itemDesc=document.getElementById("itemDesc");
-let infoVisibility=document.getElementById("divInfo"); let hiddenCat=document.getElementById("hiddenCat");
-let powerBox=document.getElementById("powerCats"); let upgradeBox=document.getElementById("divUpgradeCat");
+let infoVisibility=document.getElementById("divInfo"), hiddenCat=document.getElementById("hiddenCat");
+let powerBox=document.getElementById("powerCats"), upgradeBox=document.getElementById("divUpgradeCat");
 let clickMultiplier=1;
 let numberCats=0;
 let catsPerSecond=0.0;
@@ -9,7 +9,7 @@ let costMultiplier= 1.15;
 let hCatChanceO=0.00;
 let hCatChance=0.00;
 let hCatChanceI=0.002;
-let upgrades = [
+let upgrades=[
     {
         name: "Headpats",
         qty: 0,
@@ -55,8 +55,7 @@ let powerUps = [
         type: "upgrade",
         upgrade: upgrades[0],
         modifier: 2
-    },
-    {
+    }, {
         name: "Feline knowledge",
         desc: "Your clicks now create double the cats!<br/>Clicks cps x2",
         puId: "pu2",
@@ -73,6 +72,31 @@ let powerUps = [
         type: "upgrade",
         upgrade: upgrades[1],
         modifier: 2
+    }, {
+        name: "Mouse full of hair",
+        desc: "Well, the cats start comin' and they don't stop comin'!<br/>Clicks cps x2",
+        puId: "pu4",
+        pic: "media/cursor.png",
+        cost: 3000,
+        type: "click",
+        modifier: 2
+    }, {
+        name: "Fish treats!",
+        desc: "Yup, they have salmon. I definitely didn't taste it myself.<br/>Treats cps x2",
+        puId: "pu5",
+        pic: "media/treat.png",
+        cost: 4500,
+        type: "click",
+        upgrade: upgrades[2],
+        modifier: 2
+    }, {
+        name: "That cursor sure is hairy",
+        desc: "I came in like a ball of wool<br/>I never hit so hard in love<br/>Clicks cps x4",
+        puId: "pu6",
+        pic: "media/cursor.png",
+        cost: 8000,
+        type: "click",
+        modifier: 4
     }
 ]
 
@@ -84,15 +108,20 @@ cpsCats();
 fillUpgrades();
 fillPowerups();
 
+/* This function is called on the click of the CAT. It adds the click value to the cats value */
 function clickCat() {
     numberCats += clickMultiplier;
 }
 
+/* This function is called every 10th of a second and updates the number of cats the player has*/
 function updateCats(){
     cats.innerHTML=Math.round(numberCats*10)/10;
     setTimeout(updateCats, 100);
 }
 
+/* This function is called authomatically every second and does two things; it adds the cps value 
+to the quantity of cats and also loads the hideouts if the random number generated is included on 
+the hideout chance */
 function cpsCats() {
     numberCats+=catsPerSecond;
     if (Math.random()<=hCatChance) {
@@ -105,6 +134,8 @@ function cpsCats() {
     setTimeout(cpsCats, 1000);
 }
 
+/* This function is executed authomatically every 0.5 seconds and updates the cps. 
+Might be too resource intensive */
 function updateCps() {
     catsPerSecond=0;
     upgrades.forEach(element => {
@@ -113,10 +144,12 @@ function updateCps() {
     setTimeout(updateCps, 50);
 }
 
+/* This function update the innerHTML of the cps, with the rounded up quantity */
 function showCps() {
     cps.innerHTML=Math.round(catsPerSecond*10)/10;
 }
 
+/* This function uses the array upgrades to fill the powerups box with them */
 function fillUpgrades() {
     for (let i=0; i<upgrades.length; i++) {
         let upgrade=document.createElement("div");
@@ -161,6 +194,7 @@ function fillUpgrades() {
     }
 }
 
+/* This function uses the array powerUps to fill the powerups box with them */
 function fillPowerups() {
     for (let i=0; i<powerUps.length; i++) {
         let powerup=document.createElement("div");
@@ -192,28 +226,34 @@ function fillPowerups() {
     }
 }
 
+/* This function fills the information box and then calls infoVisible to set the box visible */
 function description(descName, descInfo) {
     itemName.innerHTML=descName;
     itemDesc.innerHTML=descInfo;
     infoVisible();
 }
 
+/* This function calls infoInvisible, and then empties the content of the information box */
 function descriptionOver() {
     infoInvisible();
     itemName.innerHTML="";
     itemDesc.innerHTML="";
 }
 
+/* This function sets the information box visibility to visible if the box's content isn't empty */
 function infoVisible() {
     if (itemName.innerHTML!="") {
         infoVisibility.style.visibility="visible";
     }
 }
 
+/* This function sets the information box visibility to hidden */
 function infoInvisible() {
     infoVisibility.style.visibility="hidden";
 }
 
+/* A general function called whenever the player buys something. It uses the value "type" to filter
+through the different things the player can buy */
 function buy(object) {
     if (object.cost<=numberCats) {
         numberCats-=object.cost;
@@ -236,26 +276,7 @@ function buy(object) {
     }
 }
 
-function updateCps() {
-    catsPerSecond=0;
-    upgrades.forEach(element => {
-        catsPerSecond+=(element.cps*element.qty*element.modifier);
-    });
-}
-
-/*
-
--2% prob de que aparezca el evento cada segundo
--por cada segundo que pase, +0.3%
--a los 30 segundos sería un 11%
------------------------------
--aparecen 2 objetos, con sus imágenes aleatorias
--uno es true, otro es false
--cuando el usuario hace click en uno, ambos desaparecen
--si adivina el verdadero, premio
-
-*/
-
+/* This function loads the hideouts for the cats and sets them to random positions */
 function loadHideouts() {
     let hideout1=document.createElement("img");
     let hideout2=document.createElement("img");
@@ -267,10 +288,10 @@ function loadHideouts() {
     hideout2.setAttribute("class", "hideouts");
 
     hideout1.addEventListener("click", function() {
-        findcat(true);
+        findCat(true);
     });
     hideout2.addEventListener("click", function() {
-        findcat(false);
+        findCat(false);
     });
 
     hiddenCat.appendChild(hideout1);
@@ -287,19 +308,34 @@ function loadHideouts() {
     setTimeout(hideCat, 5000);
 }
 
-function findcat(bool) {
+/* This function is called whenever a loadout is clicked.
+It first hides them, then awards the player if they win the 50/50 */
+function findCat(bool) {
     hideCat();
     if (bool) {
         activatePrize();
     }
 }
 
+/* This function is called from findCat and delete all hideouts */
 function hideCat() {
         while (hiddenCat.firstChild) {
         hiddenCat.removeChild(hiddenCat.firstChild);
     }
 }
 
+/* Function called when the player wins the 50/50, it will create a random number and award the
+player depending on the number created */
 function activatePrize() {
-    numberCats+=(catsPerSecond*20);
+    let chance=Math.random(); // Between 0 and 1
+    console.log(chance);
+
+    if (chance<=0.01) {
+        numberCats+=(catsPerSecond*200);
+    } else if (chance<=0.10) {
+        numberCats+=(catsPerSecond*100);
+    } else {
+        numberCats+=(catsPerSecond*20);
+    }
+
 }

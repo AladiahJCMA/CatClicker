@@ -92,7 +92,7 @@ let powerUps = [
     }, {
         name: "That cursor sure is hairy",
         desc: "I came in like a ball of wool<br/>I never hit so hard in love<br/>Clicks cps x4",
-        puId: "pu6",
+        puId: "pu1",
         pic: "media/cursor.png",
         cost: 8000,
         type: "click",

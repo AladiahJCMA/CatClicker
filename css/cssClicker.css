@@ -2,6 +2,8 @@ body {
     margin: 0;
     box-sizing: border-box;
     user-select: none;
+    width: 100vw;
+    height: 100vh;
 }
 
 /* http://color-hex.com/color/70213b */
@@ -54,55 +56,59 @@ body {
     justify-content: space-between;
     border: 5px solid #694929;
     background-color: #694929;
-    height: 40%;
+    height: 46%;
 }
 
     /* div where the number of cats reside */
     #divNumCats {
-        border-right: 3px solid #694929;
+        border-right: 0.5px solid #694929;
         justify-content: center;
         width: 33%;
         flex-wrap: wrap;
         background-color: white;
-        height: 400px;
+        height: 94%;
     }
 
     /* div where the powerups reside */
     #powerCats {
-        border-left: 3px solid #694929;
-        border-right: 3px solid #694929;
         width: 33%;
         background-color: white;
         display: flex;
-        height: 400px;
+        height: 100%;
+        flex-wrap: wrap;
+        justify-content: space-around;
     }
 
     /* div where the upgrades reside */
     #divUpgradeCat {
-        border-left: 3px solid #694929;
+        border-left: 0.5px solid #694929;
         display: flex;
         justify-content: center;
         width: 33%;
         flex-wrap: wrap;
         background-color: white;
         overflow-y: scroll;
-        height: 400px;
+        height: 100%;
     }
 
 /* div where the powers reside */
 #powerBox {
     padding: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
 /* model for the powers */
 .powerModel {
     margin: 5px;
-    height: 83px;
-    width: 60px;
+    height: 85px;
+    width: 20%;
     border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 6px;
 }
 
 /* class for the models of the upgrades */
@@ -112,17 +118,20 @@ body {
     flex-wrap: wrap;
 }
 
+
+/* class for the div that owns the title of the upgrade */
+.upgradeModelTitle {
+    height: 65px;
+    border: 0.5px solid rgb(116, 115, 115);
+    background-image: linear-gradient(to top right, rgb(110, 90, 45), rgb(250, 250, 250));
+}
+
 /* class for the div that show the qty and cost of the upgrades */
 .upgradeModelInfo {
     display: flex;
     flex-wrap: wrap;
     background-image: linear-gradient(to bottom left, rgba(255, 255, 255), rgb(170, 170, 170));
-}
-
-/* class for the div that owns the title of the upgrade */
-.upgradeModelTitle {
-    border: 0.5px solid rgb(116, 115, 115);
-    background-image: linear-gradient(to top right, rgb(110, 90, 45), rgb(250, 250, 250));
+    height: 106px;
 }
 
 .upgradeModelTitle h1 {
@@ -179,7 +188,16 @@ body {
     width: 100%;
 }
 
+.powerupImgDiv {
+    display: flex;
+    justify-items: center;
+    width: 80%;
+    height: 80%;
+}
+
 .powerupCost {
     text-align: center;
-    margin-top: 65%;
+    height: 20px;
+    width: 100%;
+    padding-top: 2px;
 }

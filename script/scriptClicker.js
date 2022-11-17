@@ -204,6 +204,8 @@ function fillPowerups() {
         powerImg.setAttribute("src", powerUps[i].pic);
         powerImg.setAttribute("width", "60px");
         powerImg.setAttribute("height", "60px");
+        let powerupImgDiv=document.createElement("div");
+        powerupImgDiv.setAttribute("class", "powerupImgDiv");
         powerup.addEventListener("click", function() {
             buy(powerUps[i]);
         });
@@ -220,7 +222,8 @@ function fillPowerups() {
         powerupCost.style.backgroundColor="white";
         powerupCost.style.borderTop="1px solid black";
         powerupCost.style.borderBottom="1px solid black";
-        powerup.appendChild(powerImg);
+        powerupImgDiv.appendChild(powerImg);
+        powerup.appendChild(powerupImgDiv);
         powerup.appendChild(powerupCost);
         powerBox.appendChild(powerup);
     }
